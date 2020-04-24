@@ -308,7 +308,6 @@ public class GUI extends JFrame {
 									break;
 									
 							}
-							System.out.println(n.toString());
 				        }		
 					} catch ( BadTimeException e ) {
 						e.printStackTrace();

@@ -1,7 +1,5 @@
 package functions;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class DailyTasks {
@@ -26,6 +24,7 @@ public class DailyTasks {
 	
 	
 	// methods to add new tasks to the task table | DO NOT TOUCH
+	// TODO check index of || I/O consistant to stack
 	public void addMonday(TaskItem m) {
 		this.monday.add(m);
 	}
