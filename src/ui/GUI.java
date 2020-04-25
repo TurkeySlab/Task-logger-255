@@ -24,6 +24,8 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -54,8 +56,19 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					// Set System L&F
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
 					GUI frame = new GUI();
 					frame.setVisible(true);
+				} catch (UnsupportedLookAndFeelException e) {
+					// handle exception
+				} catch (ClassNotFoundException e) {
+					// handle exception
+				} catch (InstantiationException e) {
+					// handle exception
+				} catch (IllegalAccessException e) {
+					// handle exception
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
