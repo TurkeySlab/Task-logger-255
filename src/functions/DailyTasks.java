@@ -20,7 +20,7 @@ public class DailyTasks {
 	
 	/*
 	 *  How data is saved in the ArrayList<TaskItem>
-	 *    - holds a refrence to the object TaskItem
+	 *    - holds a reference to the object TaskItem
 	 *    - access individual x-day items by x-day.get(index).toPrint() // prints info stored by TaskItem
 	 */
 	
@@ -84,6 +84,11 @@ public class DailyTasks {
 		 *  
 		 *  
 		 */
+		for(int i = 0; i < array[row].length; i++) {
+			if() {
+				
+			}
+		}
 		return null;
 	}
 
