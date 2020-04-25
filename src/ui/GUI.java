@@ -244,7 +244,7 @@ public class GUI extends JFrame {
 								time1 = "11:59";		// defaults EOD of day sent
 							
 							TaskItem n = new TaskItem(taskN, date + " by " + time1);
-
+							date = date.substring(0, 3);
 							if( date.equals("Mon") ) {
 								dailyTasks.addMonday(n);
 							}
@@ -290,7 +290,15 @@ public class GUI extends JFrame {
 						{
 							if( model.getValueAt(i, 0) == null )
 							{
-								model.removeRow(i);
+								String taskCode; 
+								try {
+									taskCode = model.getValueAt(i, 2).toString().substring(0, 3) +":"+ model.getValueAt(i, 1).toString().substring(0, 5);
+								} catch (StringIndexOutOfBoundsException e1 ) {
+									taskCode = model.getValueAt(i, 2).toString().substring(0, 3) +":"+ model.getValueAt(i, 1).toString();
+								}
+								DailyTasks.markDone(taskCode);	// updates list
+								
+								model.removeRow(i);				// updates table
 								
 								calendarPanel.revalidate();
 								calendarPanel.repaint();

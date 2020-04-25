@@ -194,8 +194,52 @@ public class DailyTasks {
 		return toReturn;
 	}
 
+	public static void markDone( String taskCode ) 
+	{
+		System.out.println("{"+taskCode+"}");
+		for( TaskItem t : monday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : tuesday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : wednesday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : thursday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : friday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : saturday)
+		{
+			if( t.getTaskCode().equals(taskCode) )
+				t.isDone = true;
+		}
+		for( TaskItem t : sunday)
+		{
+			System.out.println("<"+t.getTaskCode()+"}");
+			if( t.getTaskCode().equals(taskCode) )
+			{
+				System.out.println("=<"+t.getTaskCode()+"}");
+				t.isDone = true;
+			}
+		}
+		removeDone();
+	}
 	// clean up
-	public void removeDone()
+	private static void removeDone()
 	{
 		/*
 		 * Removes done tasks from list
@@ -229,11 +273,15 @@ public class DailyTasks {
 		for(int i = 0; i < saturday.size(); i++)
 		{
 			if( saturday.get(i).isDone )
+			{
+				System.out.println(saturday.get(i).toString());
 				saturday.remove(i);
+			}
 		}
 		for(int i = 0; i < sunday.size(); i++)
 		{
 			if( sunday.get(i).isDone )
+				
 				sunday.remove(i);
 		}
 	}
