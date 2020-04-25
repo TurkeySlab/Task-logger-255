@@ -97,12 +97,13 @@ public class GUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 720);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(51, 51, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel notePanel = new JPanel();
-		notePanel.setBackground(new Color(102, 51, 0));
+		notePanel.setBackground(new Color(51, 102, 51));
 		notePanel.setBounds(10, 10, 323, 660);
 		contentPane.add(notePanel);
 		notePanel.setLayout(null);
@@ -116,10 +117,10 @@ public class GUI extends JFrame {
 			notePanel.add(menuBar);
 			
 			// ************************************* Menu operations *************************************
-			JMenu mnSave = new JMenu("Save");
-			menuBar.add(mnSave);
+			JMenu mnSaveMenu = new JMenu("Save File");
+			menuBar.add(mnSaveMenu);
 			
-				JMenuItem mntmSave = new JMenuItem("Save...");
+				JMenuItem mntmSave = new JMenuItem("Save As...");
 				mntmSave.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						JFileChooser jfc = new JFileChooser();
@@ -140,10 +141,14 @@ public class GUI extends JFrame {
 					    }  
 					}
 				});
-				mnSave.add(mntmSave);
+				mnSaveMenu.add(mntmSave);
+				
+				JMenu mnOpenMenu = new JMenu("Open File");
+				menuBar.add(mnOpenMenu);
 				
 				
-				JMenuItem mntmOpen = new JMenuItem("Open");
+				JMenuItem mntmOpen = new JMenuItem("Open...");
+				mnOpenMenu.add(mntmOpen);
 				mntmOpen.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 							
@@ -165,14 +170,9 @@ public class GUI extends JFrame {
 					    }  
 					}
 				});
-				menuBar.add(mntmOpen);
-				
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 2, 2);
-				contentPane.add(scrollPane);
 			// ************************************* 				*************************************
 
-			calendarPanel.setBackground(new Color(0, 102, 0));
+			calendarPanel.setBackground(new Color(51, 102, 51));
 			calendarPanel.setBounds(343, 10, 591, 622);
 			contentPane.add(calendarPanel);
 			calendarPanel.setLayout(null);
@@ -315,6 +315,7 @@ public class GUI extends JFrame {
 			String today = formatter.format( LocalDateTime.now() );
 			
 			JLabel lblToday = new JLabel("Welcome back! Today is " + today );
+			lblToday.setForeground(new Color(255, 255, 255));
 			lblToday.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 20));
 			lblToday.setBounds(343, 643, 481, 27);
 			contentPane.add(lblToday);
