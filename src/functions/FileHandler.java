@@ -1,7 +1,6 @@
 package functions;
 
 public class FileHandler {
-
 	public String[][] populateTaskView()
 	{
 		/* TODO
