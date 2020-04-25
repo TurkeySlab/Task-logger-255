@@ -83,11 +83,6 @@ public class DailyTasks {
 		 *  
 		 *  
 		 */
-		for(int i = 0; i < array[row].length; i++) {
-			if() {
-				
-			}
-		}
 		return null;
 	}
 
