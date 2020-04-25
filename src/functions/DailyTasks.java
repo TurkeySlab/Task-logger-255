@@ -2,17 +2,19 @@ package functions;
 
 import java.util.ArrayList;
 
+import javax.swing.JRadioButton;
+
 public class DailyTasks {
 	/*
 	 * Holds daily tasks information for the variable named "x-day"
 	 */
-	private ArrayList<TaskItem> monday    = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> tuesday   = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> wednesday = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> thursday  = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> friday    = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> saturday  = new ArrayList<TaskItem>();
-	private ArrayList<TaskItem> sunday    = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> monday    = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> tuesday   = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> wednesday = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> thursday  = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> friday    = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> saturday  = new ArrayList<TaskItem>();
+	private static ArrayList<TaskItem> sunday    = new ArrayList<TaskItem>();
 
 	
 	
@@ -48,9 +50,9 @@ public class DailyTasks {
 	}
 
 	// Print method
-	static public String[][] tasksForDay(DayOfWeek dayOfWeek)
+	static public Object[][] tasksForDay(DayOfWeek dayOfWeek)
 	{
-		/* TODO
+		/* 
 		 * Given the dayOfWeek( enum: DayOfWeek ) 
 		 * Return the tasks assigned for that day as a 2D String array
 		 *  Where the length of array.length is = to the amount of "task Items" in that dayOfWeek
@@ -65,11 +67,80 @@ public class DailyTasks {
 		 * Debugging : if the String[][] is created correctly you will see the task for that day populated in the calendar view
 		 * 				once mock data is added. Otherwise nothing will happen and the code will compile correctly 
 		 */
-		return null;
+		Object[][] toReturn = null;
+		
+		switch( dayOfWeek )
+		{
+		case MONDAY:
+			toReturn = new Object[monday.size()][4];
+			for( int i = 0; i < monday.size(); i++ )
+			{
+				toReturn[i][1] = monday.get(i).name;
+				toReturn[i][2] = monday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case TUESDAY:
+			toReturn = new Object[tuesday.size()][4];
+			for( int i = 0; i < tuesday.size(); i++ )
+			{
+				toReturn[i][1] = tuesday.get(i).name;
+				toReturn[i][2] = tuesday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case WEDNESDAY:
+			toReturn = new Object[wednesday.size()][4];
+			for( int i = 0; i < wednesday.size(); i++ )
+			{
+				toReturn[i][1] = wednesday.get(i).name;
+				toReturn[i][2] = wednesday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case THURSDAY:
+			toReturn = new Object[thursday.size()][4];
+			for( int i = 0; i < thursday.size(); i++ )
+			{
+				toReturn[i][1] = thursday.get(i).name;
+				toReturn[i][2] = thursday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case FRIDAY:
+			toReturn = new Object[friday.size()][4];
+			for( int i = 0; i < friday.size(); i++ )
+			{
+				toReturn[i][1] = friday.get(i).name;
+				toReturn[i][2] = friday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case SATURDAY:
+			toReturn = new Object[saturday.size()][4];
+			for( int i = 0; i < saturday.size(); i++ )
+			{
+				toReturn[i][1] = saturday.get(i).name;
+				toReturn[i][2] = saturday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		case SUNDAY:
+			toReturn = new Object[sunday.size()][4];
+			for( int i = 0; i < sunday.size(); i++ )
+			{
+				toReturn[i][1] = sunday.get(i).name;
+				toReturn[i][2] = sunday.get(i).dueDate;
+				toReturn[i][3] = "no";
+			}
+			break;
+		}
+		
+		return toReturn;
 	}
 	
 	// Task due?
-	public String[][] tasksDue()
+	public static String[] tasksDue()
 	{
 		/* TODO
 		 * Return the tasks that are due today; excluding tasks marked done
@@ -79,18 +150,92 @@ public class DailyTasks {
 		 *  Where each row 			(array[row]) 
 		 *  	holds the task name		(array[row][0]) 
 		 *  	holds the date due 		(array[row][1])	  // compare date here with local date | be sure to compare correctly
-		 *  	holds if done			(array[row][2])	  // should only return tasks that are false 
-		 *  
 		 *  
 		 */
-		return null;
+		String[] toReturn = null;
+		
+			toReturn = new String[10];		// shows 10 closest due dates from monday
+			int i = 0;
+			while( i < monday.size() )
+			{
+				toReturn[i] = monday.get(i).name 	+" due "+ monday.get(i).dueDate;
+				i++;
+			}
+			while(i < tuesday.size() )
+			{
+				toReturn[i] = tuesday.get(i).name 	+" due "+ tuesday.get(i).dueDate;
+				i++;
+			}
+			while(i < wednesday.size() )
+			{
+				toReturn[i] = wednesday.get(i).name +" due "+  wednesday.get(i).dueDate;
+				i++;
+			}
+			while(i < thursday.size() )
+			{
+				toReturn[i] = thursday.get(i).name 	+" due "+ thursday.get(i).dueDate;
+				i++;
+			}
+			while(i < friday.size() )
+			{
+				toReturn[i] = friday.get(i).name 	+" due "+ friday.get(i).dueDate;
+				i++;
+			}
+			while(i < saturday.size() )
+			{
+				toReturn[i] = saturday.get(i).name 	+" due "+ saturday.get(i).dueDate;
+				i++;
+			}
+			while(i < sunday.size() )
+			{
+				toReturn[i] = sunday.get(i).name 	+" due "+ sunday.get(i).dueDate;
+				i++;
+			}
+		return toReturn;
 	}
 
-	public void taskDone()
+	// clean up
+	public void removeDone()
 	{
-		/* TODO
-		 * Update the correct task to the done status (isDone = true)
+		/*
+		 * Removes done tasks from list
 		 */
+		for(int i = 0; i < monday.size(); i++)
+		{
+			if( monday.get(i).isDone )
+				monday.remove(i);
+		}
+
+		for(int i = 0; i < tuesday.size(); i++)
+		{
+			if( tuesday.get(i).isDone )
+				tuesday.remove(i);
+		}
+		for(int i = 0; i < wednesday.size(); i++)
+		{
+			if( wednesday.get(i).isDone )
+				wednesday.remove(i);
+		}
+		for(int i = 0; i < thursday.size(); i++)
+		{
+			if( thursday.get(i).isDone )
+				thursday.remove(i);
+		}
+		for(int i = 0; i < friday.size(); i++)
+		{
+			if( friday.get(i).isDone )
+				friday.remove(i);
+		}
+		for(int i = 0; i < saturday.size(); i++)
+		{
+			if( saturday.get(i).isDone )
+				saturday.remove(i);
+		}
+		for(int i = 0; i < sunday.size(); i++)
+		{
+			if( sunday.get(i).isDone )
+				sunday.remove(i);
+		}
 	}
 }
 

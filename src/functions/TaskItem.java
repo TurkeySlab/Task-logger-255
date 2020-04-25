@@ -6,9 +6,9 @@ public class TaskItem {
 
 	
 	String name;					// name of task
-	String dueDate;					// in format : DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/YY HH:mm");
-									//    		   String today = formatter.format( LocalDateTime.now() );	
-	boolean isDone = false;			// TRUE : done  |  FASLE : todo
+	String dueDate;					// in format : "Wed Apr 15 by 23:33"
+									//    		   	
+	Boolean isDone = false;			// TRUE : done  |  FASLE : todo
 	
 	public TaskItem( String name, String dueDate ) throws BadTimeException
 	{
@@ -65,5 +65,12 @@ public class TaskItem {
 	public String getDueDate()
 	{
 		return this.dueDate;
+	}
+	public void taskDone()
+	{
+		/* TODO
+		 * Update the correct task to the done status (isDone = true)
+		 */
+		this.isDone = true;
 	}
 }
