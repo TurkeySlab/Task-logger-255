@@ -1,5 +1,11 @@
 package functions;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 public class FileHandler {
 	public String[][] populateTaskView()
 	{
@@ -43,14 +49,38 @@ public class FileHandler {
 		 * NOTE  : This method is used to save the contents of the "notePanel" 
 		 * 
 		 */
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(fileName, "UTF-8");
+			writer.append(data);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	public static String getFile( String fileName )
 	{
-		/* TODO
-		 * Read in the file "fileName".txt and return its contents as a String
-		 */
-		
-		return "";
+		StringBuilder sb = new StringBuilder();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+		    String line = br.readLine();
+
+		    while (line != null) {
+		        sb.append(line);
+		        sb.append(System.lineSeparator());
+		        line = br.readLine();
+		    }
+		    String everything = sb.toString();
+		    br.close();
+		} catch( Exception e) {
+		    e.printStackTrace();
+		}
+		return sb.toString();
 	}
 	private static String[][] getFile()
 	{
