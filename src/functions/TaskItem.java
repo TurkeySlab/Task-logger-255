@@ -23,11 +23,7 @@ public class TaskItem {
 		 * 
 		 * 		if not throw BadTimeException 		// throw new BadTimeException( "message" );
 		 */
-		try {
-			this.taskCode = dueDate.substring(0, 3) +":"+ name.substring(0, 5);
-		} catch (StringIndexOutOfBoundsException e ) {
-			this.taskCode = dueDate.substring(0, 3) +":"+ name;
-		}
+		this.taskCode = dueDate.substring(0, 3) +":"+ name;
 	}
 	
 	public String toString()

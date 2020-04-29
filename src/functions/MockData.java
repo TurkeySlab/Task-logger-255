@@ -1,14 +1,12 @@
 package functions;
 
 public class MockData {
-	public static void buildData()
+	public static void buildData(DailyTasks DT)
 	{
 		try {
-			DailyTasks DT = new DailyTasks();
-			
 			TaskItem tM1 = new TaskItem( "CNIT 255 Homework", "Mon Apr 20 by 23:59");			// in format : "Wed Apr 15 by 23:33"
 			TaskItem tM2 = new TaskItem( "CNIT 242 Homework", "Mon Apr 20 by 23:59");			// in format : "Wed Apr 15 by 23:33"
-			TaskItem tM3 = new TaskItem( "CNIT 280 Final", "Mon Apr 20 by 23:59");			// in format : "Wed Apr 15 by 23:33"
+			TaskItem tM3 = new TaskItem( "CNIT 280 Final", "Mon Apr 20 by 23:59");				// in format : "Wed Apr 15 by 23:33"
 			DT.addMonday(tM1);
 			DT.addMonday(tM2);
 			DT.addMonday(tM3);

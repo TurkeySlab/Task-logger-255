@@ -24,7 +24,6 @@ import functions.TaskItem;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JMenuBar;
@@ -44,22 +43,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JRadioButton;
-import java.awt.Scrollbar;
-import javax.swing.JScrollPane;
 
 public class GUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private DailyTasks dailyTasks;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		MockData.buildData();
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -89,11 +81,16 @@ public class GUI extends JFrame {
 	String fileName = "";
 	DefaultTableModel model;
 	JPanel calendarPanel = new JPanel();
+	DailyTasks DailyTasks = new DailyTasks();	
 
 	public GUI() {
-		dailyTasks = new DailyTasks();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MM/dd");
+		String today = formatter.format( LocalDateTime.now() );
 		
-		
+		setTitle("Task Logger: " + today);
+		setResizable(false);
+		MockData.buildData(DailyTasks);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 720);
 		contentPane = new JPanel();
@@ -234,38 +231,40 @@ public class GUI extends JFrame {
 				        	 */
 							result = JOptionPane.showConfirmDialog(table, params, "Create Task", JOptionPane.PLAIN_MESSAGE);
 							
-							String date  = ((JDateChooser)params[1]).getDate().toString();
-								   date  = date.substring(0, date.indexOf(':') - 3);		// removes unused data
+							String date  = ((JDateChooser)params[1]).getDate().toString();	// "Wed Apr 29 19:02:31 EDT 2020" raw
+								   date  = date.substring(0, date.indexOf(':') - 3);		// "Wed Apr 29"  cleaned
 							
+								   
+								   
 							String time1 = ((JFormattedTextField)params[3]).getText();		// gets time entered | can be out of bounds
-							String taskN = ((JTextField)params[5]).getText();
+							String taskName = ((JTextField)params[5]).getText();
 							
 							if( !Character.isDigit( time1.charAt(0)) )
-								time1 = "11:59";		// defaults EOD of day sent
+								time1 = "23:59";		// defaults EOD 
 							
-							TaskItem n = new TaskItem(taskN, date + " by " + time1);
-							date = date.substring(0, 3);
+							TaskItem n = new TaskItem(taskName, date + " by " + time1);
+							
+							date = date.substring(0, 3);		// 3 letter day of week
 							if( date.equals("Mon") ) {
-								dailyTasks.addMonday(n);
+								DailyTasks.addMonday(n);
 							}
 							if( date.equals("Tue") ) {
-								dailyTasks.addTuesday(n);
+								DailyTasks.addTuesday(n);
 							}
 							if( date.equals( "Wed") ) {
-								dailyTasks.addWednesday(n);
+								DailyTasks.addWednesday(n);
 							}
 							if( date.equals( "Thr") ) {
-								dailyTasks.addThursday(n);
+								DailyTasks.addThursday(n);
 							}
 							if( date.equals( "Fri") ) {
-								dailyTasks.addFriday(n);
+								DailyTasks.addFriday(n);
 							}
 							if( date.equals( "Sat") ) {
-								System.out.println(date);
-								dailyTasks.addSaturday(n);
+								DailyTasks.addSaturday(n);
 							}
 							if( date.equals( "Sun") ) {
-								dailyTasks.addSunday(n);
+								DailyTasks.addSunday(n);
 							}
 				        }		
 				        buildTask();		// builds list
@@ -288,14 +287,10 @@ public class GUI extends JFrame {
 					{
 						if( model.getValueAt(i, 3).toString().equalsIgnoreCase("yes") || model.getValueAt(i, 3).toString().equalsIgnoreCase("true") )
 						{
-							if( model.getValueAt(i, 0) == null )
+							if( model.getValueAt(i, 0) == null )	// check that it is not a DayOfWeek Label 
 							{
-								String taskCode; 
-								try {
-									taskCode = model.getValueAt(i, 2).toString().substring(0, 3) +":"+ model.getValueAt(i, 1).toString().substring(0, 5);
-								} catch (StringIndexOutOfBoundsException e1 ) {
-									taskCode = model.getValueAt(i, 2).toString().substring(0, 3) +":"+ model.getValueAt(i, 1).toString();
-								}
+								String taskCode = model.getValueAt(i, 2).toString().substring(0, 3) +":"+ model.getValueAt(i, 1).toString();
+
 								DailyTasks.markDone(taskCode);	// updates list
 								
 								model.removeRow(i);				// updates table
@@ -310,9 +305,6 @@ public class GUI extends JFrame {
 			});
 			btnCompleteTask.setBounds(261, 594, 155, 23);
 			calendarPanel.add(btnCompleteTask);
-			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MM/dd");
-			String today = formatter.format( LocalDateTime.now() );
 			
 			JLabel lblToday = new JLabel("Welcome back! Today is " + today );
 			lblToday.setForeground(new Color(255, 255, 255));
@@ -393,8 +385,6 @@ public class GUI extends JFrame {
         	} catch (NullPointerException e ) {
 	        	// no task for given day
 	        }
-        	
-        System.out.println(DailyTasks.tasksForDay(DayOfWeek.SATURDAY).length);
 	}
 }
 

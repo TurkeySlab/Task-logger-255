@@ -8,16 +8,25 @@ public class DailyTasks {
 	/*
 	 * Holds daily tasks information for the variable named "x-day"
 	 */
-	private static ArrayList<TaskItem> monday    = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> tuesday   = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> wednesday = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> thursday  = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> friday    = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> saturday  = new ArrayList<TaskItem>();
-	private static ArrayList<TaskItem> sunday    = new ArrayList<TaskItem>();
+	private ArrayList<TaskItem> monday   ;
+	private ArrayList<TaskItem> tuesday  ;
+	private ArrayList<TaskItem> wednesday;
+	private ArrayList<TaskItem> thursday ;
+	private ArrayList<TaskItem> friday   ;
+	private ArrayList<TaskItem> saturday ;
+	private ArrayList<TaskItem> sunday   ;
 
 	
-	
+	public DailyTasks()
+	{
+		this.monday    = new ArrayList<TaskItem>();
+		this.tuesday   = new ArrayList<TaskItem>();
+		this.wednesday = new ArrayList<TaskItem>();
+		this.thursday  = new ArrayList<TaskItem>();
+		this.friday    = new ArrayList<TaskItem>();
+		this.saturday  = new ArrayList<TaskItem>();
+		this.sunday    = new ArrayList<TaskItem>();
+	}
 	/*
 	 *  How data is saved in the ArrayList<TaskItem>
 	 *    - holds a reference to the object TaskItem
@@ -26,7 +35,6 @@ public class DailyTasks {
 	
 	
 	// methods to add new tasks to the task table | DO NOT TOUCH
-	// TODO check index of || I/O consistant to stack
 	public void addMonday(TaskItem m) {
 		this.monday.add(m);
 	}
@@ -50,7 +58,7 @@ public class DailyTasks {
 	}
 
 	// Print method
-	static public Object[][] tasksForDay(DayOfWeek dayOfWeek)
+	public Object[][] tasksForDay(DayOfWeek dayOfWeek)
 	{
 		/* 
 		 * Given the dayOfWeek( enum: DayOfWeek ) 
@@ -73,64 +81,64 @@ public class DailyTasks {
 		{
 		case MONDAY:
 			toReturn = new Object[monday.size()][4];
-			for( int i = 0; i < monday.size(); i++ )
+			for( int i = 0; i < this.monday.size(); i++ )
 			{
-				toReturn[i][1] = monday.get(i).name;
-				toReturn[i][2] = monday.get(i).dueDate;
+				toReturn[i][1] = this.monday.get(i).name;
+				toReturn[i][2] = this.monday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case TUESDAY:
-			toReturn = new Object[tuesday.size()][4];
-			for( int i = 0; i < tuesday.size(); i++ )
+			toReturn = new Object[this.tuesday.size()][4];
+			for( int i = 0; i < this.tuesday.size(); i++ )
 			{
-				toReturn[i][1] = tuesday.get(i).name;
-				toReturn[i][2] = tuesday.get(i).dueDate;
+				toReturn[i][1] = this.tuesday.get(i).name;
+				toReturn[i][2] = this.tuesday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case WEDNESDAY:
-			toReturn = new Object[wednesday.size()][4];
-			for( int i = 0; i < wednesday.size(); i++ )
+			toReturn = new Object[this.wednesday.size()][4];
+			for( int i = 0; i < this.wednesday.size(); i++ )
 			{
-				toReturn[i][1] = wednesday.get(i).name;
-				toReturn[i][2] = wednesday.get(i).dueDate;
+				toReturn[i][1] = this.wednesday.get(i).name;
+				toReturn[i][2] = this.wednesday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case THURSDAY:
-			toReturn = new Object[thursday.size()][4];
-			for( int i = 0; i < thursday.size(); i++ )
+			toReturn = new Object[this.thursday.size()][4];
+			for( int i = 0; i < this.thursday.size(); i++ )
 			{
-				toReturn[i][1] = thursday.get(i).name;
-				toReturn[i][2] = thursday.get(i).dueDate;
+				toReturn[i][1] = this.thursday.get(i).name;
+				toReturn[i][2] = this.thursday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case FRIDAY:
-			toReturn = new Object[friday.size()][4];
-			for( int i = 0; i < friday.size(); i++ )
+			toReturn = new Object[this.friday.size()][4];
+			for( int i = 0; i < this.friday.size(); i++ )
 			{
-				toReturn[i][1] = friday.get(i).name;
-				toReturn[i][2] = friday.get(i).dueDate;
+				toReturn[i][1] = this.friday.get(i).name;
+				toReturn[i][2] = this.friday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case SATURDAY:
-			toReturn = new Object[saturday.size()][4];
-			for( int i = 0; i < saturday.size(); i++ )
+			toReturn = new Object[this.saturday.size()][4];
+			for( int i = 0; i < this.saturday.size(); i++ )
 			{
-				toReturn[i][1] = saturday.get(i).name;
-				toReturn[i][2] = saturday.get(i).dueDate;
+				toReturn[i][1] = this.saturday.get(i).name;
+				toReturn[i][2] = this.saturday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
 		case SUNDAY:
-			toReturn = new Object[sunday.size()][4];
-			for( int i = 0; i < sunday.size(); i++ )
+			toReturn = new Object[this.sunday.size()][4];
+			for( int i = 0; i < this.sunday.size(); i++ )
 			{
-				toReturn[i][1] = sunday.get(i).name;
-				toReturn[i][2] = sunday.get(i).dueDate;
+				toReturn[i][1] = this.sunday.get(i).name;
+				toReturn[i][2] = this.sunday.get(i).dueDate;
 				toReturn[i][3] = "no";
 			}
 			break;
@@ -140,7 +148,7 @@ public class DailyTasks {
 	}
 	
 	// Task due?
-	public static String[] tasksDue()
+	public String[] tasksDue()
 	{
 		/* TODO
 		 * Return the tasks that are due today; excluding tasks marked done
@@ -156,133 +164,126 @@ public class DailyTasks {
 		
 			toReturn = new String[10];		// shows 10 closest due dates from monday
 			int i = 0;
-			while( i < monday.size() )
+			while( i < this.monday.size() )
 			{
-				toReturn[i] = monday.get(i).name 	+" due "+ monday.get(i).dueDate;
+				toReturn[i] = this.monday.get(i).name 	 +" due "+ this.monday.get(i).dueDate;
 				i++;
 			}
-			while(i < tuesday.size() )
+			while(i < this.tuesday.size() )
 			{
-				toReturn[i] = tuesday.get(i).name 	+" due "+ tuesday.get(i).dueDate;
+				toReturn[i] = this.tuesday.get(i).name   +" due "+ this.tuesday.get(i).dueDate;
 				i++;
 			}
-			while(i < wednesday.size() )
+			while(i < this.wednesday.size() )
 			{
-				toReturn[i] = wednesday.get(i).name +" due "+  wednesday.get(i).dueDate;
+				toReturn[i] = this.wednesday.get(i).name +" due "+  this.wednesday.get(i).dueDate;
 				i++;
 			}
-			while(i < thursday.size() )
+			while(i < this.thursday.size() )
 			{
-				toReturn[i] = thursday.get(i).name 	+" due "+ thursday.get(i).dueDate;
+				toReturn[i] = this.thursday.get(i).name  +" due "+ this.thursday.get(i).dueDate;
 				i++;
 			}
-			while(i < friday.size() )
+			while(i < this.friday.size() )
 			{
-				toReturn[i] = friday.get(i).name 	+" due "+ friday.get(i).dueDate;
+				toReturn[i] = this.friday.get(i).name 	 +" due "+ this.friday.get(i).dueDate;
 				i++;
 			}
-			while(i < saturday.size() )
+			while(i < this.saturday.size() )
 			{
-				toReturn[i] = saturday.get(i).name 	+" due "+ saturday.get(i).dueDate;
+				toReturn[i] = this.saturday.get(i).name  +" due "+ this.saturday.get(i).dueDate;
 				i++;
 			}
-			while(i < sunday.size() )
+			while(i < this.sunday.size() )
 			{
-				toReturn[i] = sunday.get(i).name 	+" due "+ sunday.get(i).dueDate;
+				toReturn[i] = this.sunday.get(i).name 	 +" due "+ this.sunday.get(i).dueDate;
 				i++;
 			}
 		return toReturn;
 	}
 
-	public static void markDone( String taskCode ) 
+	public void markDone( String taskCode ) 
 	{
-		System.out.println("{"+taskCode+"}");
-		for( TaskItem t : monday)
+		System.out.println("Enter mark done \n   {"+taskCode+"}");
+		for( TaskItem t : this.monday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : tuesday)
+		for( TaskItem t : this.tuesday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : wednesday)
+		for( TaskItem t : this.wednesday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : thursday)
+		for( TaskItem t : this.thursday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : friday)
+		for( TaskItem t : this.friday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : saturday)
+		for( TaskItem t : this.saturday)
 		{
 			if( t.getTaskCode().equals(taskCode) )
 				t.isDone = true;
 		}
-		for( TaskItem t : sunday)
+		for( TaskItem t : this.sunday)
 		{
-			System.out.println("<"+t.getTaskCode()+"}");
 			if( t.getTaskCode().equals(taskCode) )
 			{
-				System.out.println("=<"+t.getTaskCode()+"}");
 				t.isDone = true;
 			}
 		}
 		removeDone();
 	}
 	// clean up
-	private static void removeDone()
+	private void removeDone()
 	{
 		/*
 		 * Removes done tasks from list
 		 */
-		for(int i = 0; i < monday.size(); i++)
+		for(int i = 0; i < this.monday.size(); i++)
 		{
-			if( monday.get(i).isDone )
-				monday.remove(i);
+			if( this.monday.get(i).isDone )
+				this.monday.remove(i);
 		}
-
-		for(int i = 0; i < tuesday.size(); i++)
+		for(int i = 0; i < this.tuesday.size(); i++)
 		{
-			if( tuesday.get(i).isDone )
-				tuesday.remove(i);
+			if( this.tuesday.get(i).isDone )
+				this.tuesday.remove(i);
 		}
-		for(int i = 0; i < wednesday.size(); i++)
+		for(int i = 0; i < this.wednesday.size(); i++)
 		{
-			if( wednesday.get(i).isDone )
-				wednesday.remove(i);
+			if( this.wednesday.get(i).isDone )
+				this.wednesday.remove(i);
 		}
-		for(int i = 0; i < thursday.size(); i++)
+		for(int i = 0; i < this.thursday.size(); i++)
 		{
-			if( thursday.get(i).isDone )
-				thursday.remove(i);
+			if( this.thursday.get(i).isDone )
+				this.thursday.remove(i);
 		}
-		for(int i = 0; i < friday.size(); i++)
+		for(int i = 0; i < this.friday.size(); i++)
 		{
-			if( friday.get(i).isDone )
-				friday.remove(i);
+			if( this.friday.get(i).isDone )
+				this.friday.remove(i);
 		}
-		for(int i = 0; i < saturday.size(); i++)
+		for(int i = 0; i < this.saturday.size(); i++)
 		{
-			if( saturday.get(i).isDone )
-			{
-				System.out.println(saturday.get(i).toString());
-				saturday.remove(i);
-			}
+			if( this.saturday.get(i).isDone )
+				this.saturday.remove(i);
 		}
-		for(int i = 0; i < sunday.size(); i++)
+		for(int i = 0; i < this.sunday.size(); i++)
 		{
-			if( sunday.get(i).isDone )
-				
-				sunday.remove(i);
+			if( this.sunday.get(i).isDone )
+				this.sunday.remove(i);
 		}
 	}
 }
